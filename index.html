@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Republic of Saaremaa — The Perfect Nation Experiment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-slate-200 font-sans">
+  <div class="max-w-2xl mx-auto px-4 py-10 space-y-6">
+
+    <!-- Intro screen -->
+    <div id="introScreen" class="space-y-6">
+      <div class="text-center space-y-4 py-8">
+        <div class="text-6xl">🏝️</div>
+        <h1 class="text-4xl font-black bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent leading-tight">
+          Republic of Saaremaa
+        </h1>
+        <p class="text-xl text-blue-300 font-semibold">The Perfect Nation Experiment</p>
+        <div class="max-w-md mx-auto bg-white/5 border border-white/10 rounded-3xl p-6 text-left space-y-3 text-slate-300 text-sm leading-relaxed">
+          <p>📅 <strong class="text-white">March 2026.</strong> Saaremaa — a Baltic island of 31,000 people — declares independence.</p>
+          <p>🌍 They had one shot to build it right. So they studied <strong class="text-white">every nation on Earth</strong> — what worked, what failed, what the data actually showed.</p>
+          <p>⚖️ Then they cherry-picked <strong class="text-white">the best policy from each country</strong> — not ideology, just evidence.</p>
+          <p>📈 <strong class="text-white">This is what happened next.</strong> Watch 20 years unfold in real time.</p>
+        </div>
+        <button onclick="startSim()" class="px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 rounded-2xl font-black text-xl shadow-2xl transition-all">
+          Watch the experiment →
+        </button>
+      </div>
+    </div>
+
+    <!-- Simulation screen -->
+    <div id="simScreen" class="hidden space-y-5">
+
+      <!-- Nation header -->
+      <div class="bg-gradient-to-r from-blue-900/50 to-cyan-900/50 backdrop-blur-xl border border-blue-500/30 rounded-3xl p-6 shadow-2xl">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-black">🏝️ Republic of Saaremaa</h2>
+            <div class="text-blue-300 font-mono text-sm mt-1">Capital: Kuressaare • Currency: SRK (1:1 EUR)</div>
+          </div>
+          <div class="text-right">
+            <div id="simYear" class="text-3xl font-black text-white">2026</div>
+            <div class="text-xs text-slate-400">Year <span id="yearNum">1</span> of 20</div>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="mt-4 h-2 bg-white/10 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-700" style="width:5%"></div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-4 gap-3 mt-4">
+          <div class="bg-black/20 rounded-2xl p-3 text-center">
+            <div id="statGDP" class="text-lg font-black text-emerald-300">€12k</div>
+            <div class="text-xs text-slate-400 mt-1">GDP/capita</div>
+          </div>
+          <div class="bg-black/20 rounded-2xl p-3 text-center">
+            <div id="statPop" class="text-lg font-black text-blue-300">31k</div>
+            <div class="text-xs text-slate-400 mt-1">Population</div>
+          </div>
+          <div class="bg-black/20 rounded-2xl p-3 text-center">
+            <div id="statHappy" class="text-lg font-black text-yellow-300">42/100</div>
+            <div class="text-xs text-slate-400 mt-1">Happiness</div>
+          </div>
+          <div class="bg-black/20 rounded-2xl p-3 text-center">
+            <div id="statRank" class="text-lg font-black text-purple-300">#47</div>
+            <div class="text-xs text-slate-400 mt-1">World rank</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy being adopted (animated) -->
+      <div id="policyCard" class="hidden bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 shadow-2xl">
+        <div class="text-xs text-blue-300 font-semibold uppercase tracking-wider mb-2">📋 New Policy Adopted</div>
+        <div class="flex gap-3 items-start">
+          <div id="policyIcon" class="text-3xl shrink-0"></div>
+          <div>
+            <div id="policyTitle" class="font-bold text-white text-sm"></div>
+            <div id="policySource" class="text-blue-300 text-xs mt-1"></div>
+            <div id="policyFact" class="text-slate-400 text-xs mt-2 leading-relaxed"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+        <h3 class="font-bold mb-4 text-sm text-slate-300 uppercase tracking-wider">📈 20-Year Trajectory</h3>
+        <div class="space-y-5">
+          <div><canvas id="chartGDP"   height="100"></canvas></div>
+          <div><canvas id="chartHappy" height="100"></canvas></div>
+          <div><canvas id="chartPop"   height="100"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Events log -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+        <h3 class="font-bold mb-4 text-sm text-slate-300 uppercase tracking-wider">📰 Saaremaa Chronicle</h3>
+        <div id="eventLog" class="space-y-2 max-h-72 overflow-y-auto"></div>
+      </div>
+
+      <!-- Policies adopted so far -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+        <h3 class="font-bold mb-4 text-sm text-slate-300 uppercase tracking-wider">⚖️ Policies in Force</h3>
+        <div id="policiesAdopted" class="space-y-2"></div>
+      </div>
+
+      <!-- Final result -->
+      <div id="finalCard" class="hidden bg-gradient-to-br from-blue-900/50 to-cyan-900/50 backdrop-blur-xl border border-blue-400/30 rounded-3xl p-6 shadow-2xl space-y-5">
+        <div class="text-center">
+          <div class="text-5xl mb-3">🏆</div>
+          <h3 class="text-2xl font-black">20 Years Later</h3>
+          <p class="text-blue-300 text-sm mt-1">The experiment is complete. Here's where Saaremaa stands.</p>
+        </div>
+
+        <div id="finalStats" class="space-y-3"></div>
+
+        <!-- World comparison chart -->
+        <div>
+          <h4 class="font-bold text-sm text-slate-300 uppercase tracking-wider mb-3">🌍 vs The World (GDP/capita)</h4>
+          <div><canvas id="chartWorld" height="200"></canvas></div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <button onclick="shareResult()" class="py-4 bg-gradient-to-r from-violet-600 to-purple-600 hover:opacity-90 rounded-2xl font-bold transition-all text-sm">🔗 Share results</button>
+          <button onclick="resetSim()"    class="py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold transition-all text-sm">🔄 Watch again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
