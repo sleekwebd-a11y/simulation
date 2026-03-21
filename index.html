@@ -14,7 +14,7 @@
   <div class="text-center space-y-3">
     <div class="text-6xl">🏝️</div>
     <h1 class="text-4xl font-black bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">Republic of Varde</h1>
-    <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider">Formerly the island of Saaremaa • Est. 2026</p>
+    <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider">Formerly the island of Saaremaa · Est. 2026</p>
   </div>
 
   <!-- INTRO PANEL -->
@@ -35,7 +35,7 @@
       <div class="grid grid-cols-3 gap-3 pt-2">
         <div class="bg-black/30 rounded-2xl p-3 text-center">
           <div class="text-lg font-black text-white">31,000</div>
-          <div class="text-xs text-slate-500 mt-0.5">Starting population</div>
+          <div class="text-xs text-slate-500 mt-0.5">Starting pop.</div>
         </div>
         <div class="bg-black/30 rounded-2xl p-3 text-center">
           <div class="text-lg font-black text-white">20</div>
@@ -43,7 +43,7 @@
         </div>
         <div class="bg-black/30 rounded-2xl p-3 text-center">
           <div class="text-lg font-black text-white">2,673 km²</div>
-          <div class="text-xs text-slate-500 mt-0.5">Area (Baltic island)</div>
+          <div class="text-xs text-slate-500 mt-0.5">Baltic island</div>
         </div>
       </div>
     </div>
@@ -51,29 +51,28 @@
     <!-- Policy preview -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
       <h2 class="font-black text-lg">📋 Policies That Will Roll Out</h2>
-      <p class="text-xs text-slate-400">Each policy activates on its scheduled year. You advance year by year and watch Varde transform.</p>
+      <p class="text-xs text-slate-400">Each policy activates on its scheduled year. Advance year by year and watch Varde transform.</p>
       <div id="policyPreviewList" class="space-y-1 max-h-60 overflow-y-auto pr-1"></div>
     </div>
 
     <!-- Sim length -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-4">
       <h2 class="font-black text-lg">⏱️ How long do you want to simulate?</h2>
-      <div class="grid grid-cols-3 gap-2" id="lenPicker">
-        <button onclick="pickLen(20)"   data-len="20"   class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">20 years</button>
-        <button onclick="pickLen(50)"   data-len="50"   class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">50 years</button>
-        <button onclick="pickLen(100)"  data-len="100"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">100 years</button>
-        <button onclick="pickLen(200)"  data-len="200"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">200 years</button>
-        <button onclick="pickLen(500)"  data-len="500"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">500 years</button>
-        <button onclick="pickLen(1000)" data-len="1000" class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">1000 years</button>
+      <div class="grid grid-cols-3 gap-2">
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="20">20 years</button>
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="50">50 years</button>
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="100">100 years</button>
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="200">200 years</button>
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="500">500 years</button>
+        <button class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all" data-len="1000">1000 years</button>
       </div>
     </div>
 
-    <button id="beginBtn" onclick="startSimulation()"
-      class="w-full py-5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-xl shadow-2xl transition-all active:scale-95">
+    <button id="beginBtn" class="w-full py-5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-xl shadow-2xl transition-all active:scale-95">
       🏝️ Begin the Varde Experiment
     </button>
 
-  </div><!-- /introPanel -->
+  </div>
 
   <!-- SIM PANEL -->
   <div id="simPanel" class="hidden space-y-5">
@@ -87,7 +86,7 @@
         </div>
         <div class="text-right">
           <div id="simYearDisplay" class="text-3xl font-black text-white">2026</div>
-          <div id="simYearSub"     class="text-xs text-slate-400 mt-0.5">Year 0</div>
+          <div id="simYearSub" class="text-xs text-slate-400 mt-0.5">Year 0</div>
         </div>
       </div>
       <div class="h-2 bg-white/10 rounded-full overflow-hidden">
@@ -131,22 +130,18 @@
     <div class="bg-white/5 border border-white/10 rounded-3xl p-5 space-y-4">
       <div class="flex items-center gap-2 flex-wrap">
         <div class="flex gap-1 bg-black/30 rounded-2xl p-1">
-          <button id="btnManual" onclick="setAuto(false)" class="px-4 py-2 rounded-xl text-sm font-bold bg-teal-600 text-white transition-all">Manual</button>
-          <button id="btnAuto"   onclick="setAuto(true)"  class="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Auto</button>
+          <button id="btnManual" class="px-4 py-2 rounded-xl text-sm font-bold bg-teal-600 text-white transition-all">Manual</button>
+          <button id="btnAuto"   class="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Auto</button>
         </div>
         <div id="speedControl" class="hidden flex gap-1 bg-black/30 rounded-2xl p-1">
-          <button id="sp1" onclick="setSpeed(4000)" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white">Slow</button>
-          <button id="sp2" onclick="setSpeed(2000)" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Normal</button>
-          <button id="sp3" onclick="setSpeed(800)"  class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Fast</button>
+          <button id="sp1" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white">Slow</button>
+          <button id="sp2" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Normal</button>
+          <button id="sp3" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Fast</button>
         </div>
       </div>
-
-      <button id="btnNext" onclick="advanceYear()"
-        class="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-lg shadow-xl transition-all active:scale-95">
+      <button id="btnNext" class="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-lg shadow-xl transition-all active:scale-95">
         ▶ Next Year →
       </button>
-
-      <!-- Year summary -->
       <div id="yearSummary" class="hidden bg-black/20 border border-white/10 rounded-2xl p-4 space-y-3"></div>
     </div>
 
@@ -180,7 +175,7 @@
     <!-- Active policies -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
       <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">✅ Active Policies (<span id="activePolicyCount">0</span>/20)</h3>
-      <div id="activePolicies" class="space-y-2">
+      <div id="activePolicies">
         <div class="text-xs text-slate-500 italic">No policies active yet — press Next Year to begin.</div>
       </div>
     </div>
@@ -199,13 +194,14 @@
       </div>
       <div id="finalContent"></div>
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="shareResult()" class="py-4 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl font-bold">🔗 Share Varde</button>
-        <button onclick="resetSim()"    class="py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold">🔄 Run again</button>
+        <button id="btnShare" class="py-4 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl font-bold">🔗 Share Varde</button>
+        <button id="btnReset" class="py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold">🔄 Run again</button>
       </div>
     </div>
 
-  </div><!-- /simPanel -->
+  </div>
 </div>
+
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
