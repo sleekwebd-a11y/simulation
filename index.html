@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Republic of Saaremaa</title>
+  <title>Republic of Varde</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
@@ -11,63 +11,78 @@
 <div class="max-w-2xl mx-auto px-4 py-10 space-y-6">
 
   <!-- HEADER -->
-  <div class="text-center space-y-2">
+  <div class="text-center space-y-3">
     <div class="text-6xl">🏝️</div>
-    <h1 class="text-4xl font-black bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">Republic of Saaremaa</h1>
-    <p class="text-slate-400 text-sm">A new nation built on the world's best policies. Watch it grow.</p>
+    <h1 class="text-4xl font-black bg-gradient-to-r from-white to-teal-300 bg-clip-text text-transparent">Republic of Varde</h1>
+    <p class="text-teal-400 text-sm font-semibold uppercase tracking-wider">Formerly the island of Saaremaa • Est. 2026</p>
   </div>
 
-  <!-- ── INTRO PANEL ── -->
+  <!-- INTRO PANEL -->
   <div id="introPanel" class="space-y-5">
 
-    <!-- Nation card -->
+    <!-- Backstory -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-4">
-      <h2 class="font-bold text-lg">🗺️ The Nation</h2>
-      <div class="grid grid-cols-2 gap-3 text-sm">
-        <div class="bg-black/20 rounded-2xl p-3"><span class="text-slate-400">Capital</span><div class="font-bold text-white mt-0.5">Kuressaare</div></div>
-        <div class="bg-black/20 rounded-2xl p-3"><span class="text-slate-400">Founded</span><div class="font-bold text-white mt-0.5">2026</div></div>
-        <div class="bg-black/20 rounded-2xl p-3"><span class="text-slate-400">Population</span><div class="font-bold text-white mt-0.5">31,000</div></div>
-        <div class="bg-black/20 rounded-2xl p-3"><span class="text-slate-400">Area</span><div class="font-bold text-white mt-0.5">2,673 km²</div></div>
-        <div class="bg-black/20 rounded-2xl p-3 col-span-2"><span class="text-slate-400">Currency</span><div class="font-bold text-white mt-0.5">Saare (SRK) — pegged 1:1 to EUR</div></div>
+      <h2 class="font-black text-xl">📖 The Story</h2>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        In 2026, the Estonian island of Saaremaa — population 31,000 — declared independence and renamed itself the <strong class="text-white">Republic of Varde</strong>. Small, isolated, and starting from scratch.
+      </p>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        But Varde's founders had a radical idea: instead of inventing policies from scratch, they would simply <strong class="text-white">copy the best policy from every country on Earth</strong> — Finland's UBI, Taiwan's healthcare, Singapore's housing, Estonia's e-government, Norway's wealth fund, Portugal's drug laws.
+      </p>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        This simulation asks: <strong class="text-teal-300">what happens if you actually do that?</strong> Watch Varde grow year by year as 20 world-best policies come online — and see where it ends up compared to real nations.
+      </p>
+      <div class="grid grid-cols-3 gap-3 pt-2">
+        <div class="bg-black/30 rounded-2xl p-3 text-center">
+          <div class="text-lg font-black text-white">31,000</div>
+          <div class="text-xs text-slate-500 mt-0.5">Starting population</div>
+        </div>
+        <div class="bg-black/30 rounded-2xl p-3 text-center">
+          <div class="text-lg font-black text-white">20</div>
+          <div class="text-xs text-slate-500 mt-0.5">World-best policies</div>
+        </div>
+        <div class="bg-black/30 rounded-2xl p-3 text-center">
+          <div class="text-lg font-black text-white">2,673 km²</div>
+          <div class="text-xs text-slate-500 mt-0.5">Area (Baltic island)</div>
+        </div>
       </div>
     </div>
 
     <!-- Policy preview -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
-      <h2 class="font-bold text-lg">📋 20 World-Best Policies Ready to Deploy</h2>
-      <p class="text-xs text-slate-400">Each policy activates on schedule as the nation matures. You advance the simulation year by year and watch Saaremaa grow.</p>
-      <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
-        <div id="policyPreviewList"></div>
+      <h2 class="font-black text-lg">📋 Policies That Will Roll Out</h2>
+      <p class="text-xs text-slate-400">Each policy activates on its scheduled year. You advance year by year and watch Varde transform.</p>
+      <div id="policyPreviewList" class="space-y-1 max-h-60 overflow-y-auto pr-1"></div>
+    </div>
+
+    <!-- Sim length -->
+    <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-4">
+      <h2 class="font-black text-lg">⏱️ How long do you want to simulate?</h2>
+      <div class="grid grid-cols-3 gap-2" id="lenPicker">
+        <button onclick="pickLen(20)"   data-len="20"   class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">20 years</button>
+        <button onclick="pickLen(50)"   data-len="50"   class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">50 years</button>
+        <button onclick="pickLen(100)"  data-len="100"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">100 years</button>
+        <button onclick="pickLen(200)"  data-len="200"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">200 years</button>
+        <button onclick="pickLen(500)"  data-len="500"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">500 years</button>
+        <button onclick="pickLen(1000)" data-len="1000" class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all">1000 years</button>
       </div>
     </div>
 
-    <!-- Simulation length -->
-    <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
-      <h2 class="font-bold text-lg">⏱️ Simulation Length</h2>
-      <div class="grid grid-cols-3 gap-2" id="lengthPicker">
-        <button onclick="pickLen(20)"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-teal-600 border-teal-500 text-white" data-val="20">20 years</button>
-        <button onclick="pickLen(50)"  class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-white/5 border-white/10 text-slate-300" data-val="50">50 years</button>
-        <button onclick="pickLen(100)" class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-white/5 border-white/10 text-slate-300" data-val="100">100 years</button>
-        <button onclick="pickLen(200)" class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-white/5 border-white/10 text-slate-300" data-val="200">200 years</button>
-        <button onclick="pickLen(500)" class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-white/5 border-white/10 text-slate-300" data-val="500">500 years</button>
-        <button onclick="pickLen(1000)"class="len-btn py-3 rounded-2xl text-sm font-bold border transition-all bg-white/5 border-white/10 text-slate-300" data-val="1000">1000 years</button>
-      </div>
-    </div>
-
-    <button onclick="startSimulation()"
-      class="w-full py-5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-xl shadow-2xl transition-all">
-      🏝️ Begin the Saaremaa Experiment
+    <button id="beginBtn" onclick="startSimulation()"
+      class="w-full py-5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-xl shadow-2xl transition-all active:scale-95">
+      🏝️ Begin the Varde Experiment
     </button>
-  </div>
 
-  <!-- ── SIM PANEL ── -->
+  </div><!-- /introPanel -->
+
+  <!-- SIM PANEL -->
   <div id="simPanel" class="hidden space-y-5">
 
-    <!-- Nation stat bar -->
+    <!-- Stat bar -->
     <div class="bg-gradient-to-r from-teal-900/50 to-emerald-900/50 border border-teal-500/30 rounded-3xl p-5 shadow-2xl space-y-4">
       <div class="flex justify-between items-start">
         <div>
-          <h2 class="text-2xl font-black">🏝️ Republic of Saaremaa</h2>
+          <h2 class="text-2xl font-black">🏝️ Republic of Varde</h2>
           <div id="eraLabel" class="text-teal-300 text-xs mt-0.5 uppercase tracking-wider"></div>
         </div>
         <div class="text-right">
@@ -75,12 +90,9 @@
           <div id="simYearSub"     class="text-xs text-slate-400 mt-0.5">Year 0</div>
         </div>
       </div>
-
       <div class="h-2 bg-white/10 rounded-full overflow-hidden">
         <div id="simProgressBar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full transition-all duration-500" style="width:0%"></div>
       </div>
-
-      <!-- Stats -->
       <div class="grid grid-cols-4 gap-2">
         <div class="bg-black/30 rounded-2xl p-3 text-center">
           <div id="sGDP"   class="text-base font-black text-emerald-300">€8k</div>
@@ -91,21 +103,21 @@
           <div class="text-xs text-slate-500 mt-0.5">Population</div>
         </div>
         <div class="bg-black/30 rounded-2xl p-3 text-center">
-          <div id="sHappy" class="text-base font-black text-yellow-300">50</div>
+          <div id="sHappy" class="text-base font-black text-yellow-300">50/100</div>
           <div class="text-xs text-slate-500 mt-0.5">Happiness</div>
         </div>
         <div class="bg-black/30 rounded-2xl p-3 text-center">
-          <div id="sStab"  class="text-base font-black text-violet-300">60</div>
+          <div id="sStab"  class="text-base font-black text-violet-300">60/100</div>
           <div class="text-xs text-slate-500 mt-0.5">Stability</div>
         </div>
       </div>
       <div class="grid grid-cols-3 gap-2">
         <div class="bg-black/20 rounded-xl p-2 text-center">
-          <div id="sDebt"  class="text-sm font-bold text-rose-300">20%</div>
+          <div id="sDebt"    class="text-sm font-bold text-rose-300">20%</div>
           <div class="text-xs text-slate-500">Debt/GDP</div>
         </div>
         <div class="bg-black/20 rounded-xl p-2 text-center">
-          <div id="sWealth" class="text-sm font-bold text-amber-300">€0</div>
+          <div id="sWealth"  class="text-sm font-bold text-amber-300">€0</div>
           <div class="text-xs text-slate-500">Wealth Fund</div>
         </div>
         <div class="bg-black/20 rounded-xl p-2 text-center">
@@ -117,42 +129,43 @@
 
     <!-- Controls -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-5 space-y-4">
-      <div class="flex items-center gap-3 flex-wrap">
+      <div class="flex items-center gap-2 flex-wrap">
         <div class="flex gap-1 bg-black/30 rounded-2xl p-1">
           <button id="btnManual" onclick="setAuto(false)" class="px-4 py-2 rounded-xl text-sm font-bold bg-teal-600 text-white transition-all">Manual</button>
           <button id="btnAuto"   onclick="setAuto(true)"  class="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Auto</button>
         </div>
         <div id="speedControl" class="hidden flex gap-1 bg-black/30 rounded-2xl p-1">
-          <button onclick="setSpeed(4000)" id="sp1" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white">Slow</button>
-          <button onclick="setSpeed(2000)" id="sp2" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Normal</button>
-          <button onclick="setSpeed(800)"  id="sp3" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Fast</button>
+          <button id="sp1" onclick="setSpeed(4000)" class="px-3 py-2 rounded-xl text-xs font-bold bg-teal-600 text-white">Slow</button>
+          <button id="sp2" onclick="setSpeed(2000)" class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Normal</button>
+          <button id="sp3" onclick="setSpeed(800)"  class="px-3 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Fast</button>
         </div>
       </div>
+
       <button id="btnNext" onclick="advanceYear()"
-        class="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-lg shadow-xl transition-all">
+        class="w-full py-4 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 rounded-2xl font-black text-lg shadow-xl transition-all active:scale-95">
         ▶ Next Year →
       </button>
 
-      <!-- Year summary box -->
+      <!-- Year summary -->
       <div id="yearSummary" class="hidden bg-black/20 border border-white/10 rounded-2xl p-4 space-y-3"></div>
     </div>
 
-    <!-- New policy this year -->
-    <div id="newPolicyCard" class="hidden border-2 border-teal-500/50 bg-teal-950/40 rounded-3xl p-5 space-y-3">
-      <div class="text-xs font-bold text-teal-400 uppercase tracking-wider">📋 New Policy Activated</div>
+    <!-- New policy spotlight -->
+    <div id="policyCard" class="hidden border-2 border-teal-500/60 bg-teal-950/40 rounded-3xl p-5 space-y-3">
+      <div class="text-xs font-bold text-teal-400 uppercase tracking-wider">📋 New Policy Enacted</div>
       <div class="flex gap-4 items-start">
-        <div id="npIcon"   class="text-4xl shrink-0"></div>
+        <div id="pcIcon"   class="text-5xl shrink-0"></div>
         <div>
-          <div id="npTitle"  class="text-lg font-black text-white"></div>
-          <div id="npSource" class="text-teal-300 text-sm font-semibold mt-1"></div>
-          <div id="npFact"   class="text-slate-400 text-xs mt-2 leading-relaxed"></div>
+          <div id="pcTitle"  class="text-lg font-black text-white leading-snug"></div>
+          <div id="pcSource" class="text-teal-300 text-sm font-semibold mt-1"></div>
+          <div id="pcFact"   class="text-slate-400 text-xs mt-2 leading-relaxed"></div>
         </div>
       </div>
     </div>
 
     <!-- Charts -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-5">
-      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">📈 Growth of Saaremaa</h3>
+      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">📈 Varde Growth Charts</h3>
       <canvas id="chartGDP"   height="80"></canvas>
       <canvas id="chartHappy" height="80"></canvas>
       <canvas id="chartPop"   height="80"></canvas>
@@ -160,36 +173,38 @@
 
     <!-- World comparison -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-4">
-      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">🌍 World Comparison</h3>
+      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">🌍 Varde vs The World</h3>
       <div id="worldTable" class="space-y-2"></div>
     </div>
 
-    <!-- Active policies list -->
+    <!-- Active policies -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-3">
-      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">✅ Active Policies</h3>
-      <div id="activePolicies" class="space-y-2"></div>
+      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider">✅ Active Policies (<span id="activePolicyCount">0</span>/20)</h3>
+      <div id="activePolicies" class="space-y-2">
+        <div class="text-xs text-slate-500 italic">No policies active yet — press Next Year to begin.</div>
+      </div>
     </div>
 
     <!-- Chronicle -->
     <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
-      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider mb-4">📰 Chronicle of Saaremaa</h3>
+      <h3 class="font-bold text-sm text-slate-300 uppercase tracking-wider mb-4">📰 Chronicle of Varde</h3>
       <div id="chronicle" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
     </div>
 
     <!-- Final card -->
     <div id="finalCard" class="hidden bg-gradient-to-br from-teal-900/50 to-emerald-900/50 border border-teal-400/30 rounded-3xl p-6 space-y-5">
-      <div class="text-center">
-        <div class="text-5xl mb-2">🏆</div>
-        <h3 class="text-2xl font-black">The Saaremaa Experiment — Complete</h3>
+      <div class="text-center space-y-2">
+        <div class="text-5xl">🏆</div>
+        <h3 class="text-2xl font-black">The Varde Experiment — Complete</h3>
       </div>
       <div id="finalContent"></div>
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="shareResult()" class="py-4 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl font-bold">🔗 Share Saaremaa</button>
+        <button onclick="shareResult()" class="py-4 bg-gradient-to-r from-teal-600 to-emerald-600 rounded-2xl font-bold">🔗 Share Varde</button>
         <button onclick="resetSim()"    class="py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold">🔄 Run again</button>
       </div>
     </div>
 
-  </div>
+  </div><!-- /simPanel -->
 </div>
 <script src="data.js"></script>
 <script src="app.js"></script>
